@@ -1,4 +1,4 @@
-package fr.neo.revisions.security;
+package fr.neo.revisions;
 
 import jakarta.servlet.DispatcherType;
 import org.springframework.context.annotation.Bean;
@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
@@ -25,8 +26,9 @@ public class Security {
         MvcRequestMatcher.Builder mvc = new MvcRequestMatcher.Builder(introspector);
         return http.authorizeHttpRequests((authorize) -> authorize
                         .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
-                        .requestMatchers(mvc.pattern("/public/**")).permitAll()
-                        .anyRequest().authenticated()
+//                        .requestMatchers(mvc.pattern("**")).permitAll()
+//                        .requestMatchers(mvc.pattern("api/public/ping")).permitAll()
+                        .anyRequest().permitAll()
                 )
                 .formLogin( Customizer.withDefaults() )
                 .logout( customizer ->

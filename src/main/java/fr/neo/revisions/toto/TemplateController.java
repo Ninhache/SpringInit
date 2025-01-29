@@ -1,4 +1,4 @@
-package fr.neo.revisions;
+package fr.neo.revisions.toto;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 
